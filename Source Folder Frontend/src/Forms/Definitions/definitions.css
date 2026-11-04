@@ -1,0 +1,98 @@
+/* Legacy definition pages (Computation Type, Settlement Type) - fill the shell's content area. */
+.definitions-page {
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+/* ---------- Definitions landing: three equal cards on one row ---------- */
+.defs-page {
+    height: 100%;
+    overflow-y: auto;
+    padding: var(--page-padding);
+    font-family: var(--font-sans);
+    color: var(--text-body);
+}
+
+.defs-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.defs-card {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    width: 100%;
+    min-height: 96px;
+    padding: var(--card-padding);
+    text-align: left;
+    background: var(--surface-card);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-card);
+    color: inherit;
+    cursor: pointer;
+    transition: var(--transition-control);
+}
+
+.defs-card:hover {
+    border-color: var(--color-primary);
+    background: var(--surface-hover);
+}
+
+.defs-card:focus-visible {
+    outline: none;
+    border-color: var(--border-focus);
+    box-shadow: var(--ring-focus);
+}
+
+.defs-card-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    flex: 0 0 auto;
+    border-radius: var(--radius-icon-tile);
+    background: var(--tile-active-bg);
+    color: var(--color-primary);
+}
+
+.defs-card-text {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1;
+    min-width: 0;
+}
+
+.defs-card-title {
+    font: var(--weight-semibold) var(--text-lg)/1.3 var(--font-sans);
+    color: var(--text-heading);
+}
+
+.defs-card-desc {
+    font: var(--weight-normal) var(--text-sm)/1.4 var(--font-sans);
+    color: var(--text-muted);
+}
+
+.defs-card-arrow {
+    flex: 0 0 auto;
+    color: var(--text-muted);
+    transition: transform var(--duration-fast) var(--ease-standard), color var(--duration-fast) var(--ease-standard);
+}
+
+.defs-card:hover .defs-card-arrow {
+    color: var(--color-primary);
+    transform: translateX(2px);
+}
+
+@media (max-width: 991px) {
+    .defs-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 767px) {
+    .defs-page { padding: 16px; }
+}

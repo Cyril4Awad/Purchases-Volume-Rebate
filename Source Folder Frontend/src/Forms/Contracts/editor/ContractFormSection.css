@@ -1,0 +1,11 @@
+.contract-terms-editor .ql-editor {
+    direction: ltr;
+    text-align: left;
+}
+
+/* Terms: grows up to 5 lines, then the editor scrolls instead of the form */
+.contract-terms-editor .ql-editor {
+    min-height: calc(1.42em * 2 + 24px);
+    max-height: calc(1.42em * 5 + 24px);
+    overflow-y: auto;
+}

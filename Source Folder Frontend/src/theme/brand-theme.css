@@ -1,0 +1,166 @@
+/* design system tokens - ported from
+   "Design System-handoff/brand-design-system/project/tokens".
+   Light theme is the design system as-is. Dark theme is a neutral grey-black
+   (VS Code "Dark Modern"-style) instead of the navy in theme-dark.css.
+   Only semantic aliases change between themes; raw ramps stay fixed. */
+
+:root {
+  /* ---- Raw ramps (Tailwind v4 defaults) ---- */
+  --blue-50:#eff6ff;--blue-100:#dbeafe;--blue-200:#bedbff;--blue-300:#8ec5ff;--blue-400:#51a2ff;
+  --blue-500:#2b7fff;--blue-600:#155dfc;--blue-700:#1447e6;--blue-800:#193cb8;--blue-900:#1c398e;
+  --green-50:#f0fdf4;--green-100:#dcfce7;--green-200:#b9f8cf;--green-500:#00c950;--green-600:#00a63e;
+  --green-700:#008236;--green-800:#016630;
+  --red-50:#fef2f2;--red-100:#ffe2e2;--red-200:#ffc9c9;--red-500:#fb2c36;--red-600:#e7000b;
+  --red-700:#c10007;--red-800:#9f0712;
+  --amber-50:#fffbeb;--amber-100:#fef3c6;--amber-600:#e17100;--amber-800:#973c00;
+  --gray-50:#f9fafb;--gray-100:#f3f4f6;--gray-200:#e5e7eb;--gray-300:#d1d5dc;--gray-400:#99a1af;
+  --gray-500:#6a7282;--gray-600:#4a5565;--gray-700:#364153;--gray-800:#1e2939;--gray-900:#101828;
+  --gray-950:#030712;
+  --white:#fff;
+
+  /* ---- Semantic aliases ---- */
+  --color-primary:var(--blue-600);
+  --color-primary-hover:var(--blue-700);
+  --color-primary-soft:var(--blue-50);
+  --color-primary-soft-strong:var(--blue-100);
+  --color-success:var(--green-600);
+  --color-success-hover:var(--green-700);
+  --color-success-soft:var(--green-100);
+  --color-danger:var(--red-600);
+  --color-danger-hover:var(--red-700);
+  --color-danger-soft:var(--red-100);
+  --color-warning:var(--amber-600);
+  --color-warning-soft:var(--amber-100);
+
+  --surface-page:var(--gray-50);
+  --surface-card:var(--white);
+  --surface-sunken:var(--gray-50);
+  --surface-header:var(--gray-100);
+  --surface-hover:var(--gray-50);
+  --surface-selected:var(--blue-50);
+  --surface-scrim:rgba(0,0,0,.45);
+  --surface-chrome:var(--white);           /* sidebar + top bar */
+
+  --text-body:var(--gray-900);
+  --text-heading:var(--gray-900);
+  --text-muted:var(--gray-500);
+  --text-label:var(--gray-700);
+  --text-nav:var(--gray-800);
+  --text-placeholder:var(--gray-400);
+  --text-on-accent:var(--white);
+  --text-link:var(--blue-600);
+  --text-link-hover:var(--blue-700);
+  --text-required:var(--red-600);
+
+  --border-default:var(--gray-200);
+  --border-strong:var(--gray-300);
+  --border-field:var(--gray-300);
+  --border-focus:var(--blue-600);
+  --border-table:var(--gray-200);
+  --ring-focus:0 0 0 3px rgba(21,93,252,.25);
+
+  /* Nav icon tiles */
+  --tile-bg:var(--gray-100);
+  --tile-fg:var(--gray-700);
+  --tile-active-bg:var(--blue-100);
+  --tile-danger-bg:var(--red-100);
+  --switch-track-off:var(--gray-300);
+
+  /* ---- Type ---- */
+  --font-sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji";
+  --font-serif:ui-serif,Georgia,"Times New Roman",Times,serif;
+  --font-mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;
+  --text-2xs:11px;--text-xs:12px;--text-sm:13px;--text-base:14px;--text-md:15px;
+  --text-lg:16px;--text-xl:18px;--text-2xl:20px;--text-3xl:24px;
+  --leading-tight:1.2;--leading-snug:1.35;--leading-normal:1.5;
+  --weight-normal:400;--weight-medium:500;--weight-semibold:600;--weight-bold:700;
+  --tracking-tight:-0.01em;--tracking-normal:0;--tracking-wide:.04em;--tracking-caps:.08em;
+
+  /* ---- Spacing ---- */
+  --space-0:0px;--space-1:4px;--space-2:8px;--space-3:12px;--space-4:16px;--space-5:20px;
+  --space-6:24px;--space-8:32px;--space-10:40px;--space-12:48px;--space-16:64px;
+  --field-height:38px;--field-height-sm:32px;--field-padding-x:12px;--control-gap:8px;
+  --form-row-gap:16px;--form-col-gap:24px;--card-padding:20px;--dialog-padding:24px;
+  --page-padding:24px;--table-cell-padding-y:10px;--table-cell-padding-x:12px;
+  --sidebar-width:260px;--sidebar-width-collapsed:72px;--topbar-height:64px;
+
+  /* ---- Radius ---- */
+  --radius-xs:4px;--radius-sm:6px;--radius-md:8px;--radius-lg:10px;--radius-xl:12px;
+  --radius-2xl:16px;--radius-pill:9999px;
+  --radius-field:var(--radius-md);--radius-button:var(--radius-md);--radius-card:var(--radius-lg);
+  --radius-dialog:var(--radius-xl);--radius-badge:var(--radius-xs);--radius-chip:var(--radius-sm);
+  --radius-icon-tile:var(--radius-md);
+
+  /* ---- Elevation ---- */
+  --shadow-xs:0 1px 2px 0 rgba(0,0,0,.05);
+  --shadow-sm:0 1px 3px 0 rgba(0,0,0,.08),0 1px 2px -1px rgba(0,0,0,.06);
+  --shadow-md:0 4px 6px -1px rgba(0,0,0,.08),0 2px 4px -2px rgba(0,0,0,.05);
+  --shadow-lg:0 10px 15px -3px rgba(0,0,0,.10),0 4px 6px -4px rgba(0,0,0,.06);
+  --shadow-dialog:0 20px 40px -8px rgba(0,0,0,.28);
+  --shadow-card:var(--shadow-xs);
+  --shadow-dropdown:var(--shadow-lg);
+
+  /* ---- Motion ---- */
+  --duration-instant:80ms;--duration-fast:120ms;--duration-normal:180ms;--duration-slow:250ms;
+  --ease-standard:cubic-bezier(.4,0,.2,1);--ease-out:cubic-bezier(0,0,.2,1);
+  --transition-control:background-color var(--duration-fast) var(--ease-standard),border-color var(--duration-fast) var(--ease-standard),color var(--duration-fast) var(--ease-standard),box-shadow var(--duration-fast) var(--ease-standard);
+}
+
+/* ---- Dark: neutral grey-black, VS Code-like ---- */
+[data-theme="dark"] {
+  --color-primary:#3794ff;
+  --color-primary-hover:#4daafc;
+  --color-primary-soft:rgba(55,148,255,.12);
+  --color-primary-soft-strong:rgba(55,148,255,.22);
+  --color-success:#2ea043;
+  --color-success-soft:rgba(46,160,67,.16);
+  --color-danger:#f14c4c;
+  --color-danger-hover:#ff6b6b;
+  --color-danger-soft:rgba(241,76,76,.14);
+  --color-warning:#cca700;
+  --color-warning-soft:rgba(204,167,0,.16);
+
+  --surface-page:#1e1e1e;
+  --surface-card:#252526;
+  --surface-sunken:#1a1a1a;
+  --surface-header:#2d2d2d;
+  --surface-hover:#2a2d2e;
+  --surface-selected:rgba(55,148,255,.12);
+  --surface-scrim:rgba(0,0,0,.6);
+  --surface-chrome:#181818;
+
+  --text-body:#cccccc;
+  --text-heading:#e7e7e7;
+  --text-muted:#9d9d9d;
+  --text-label:#c5c5c5;
+  --text-nav:#cccccc;
+  --text-placeholder:#6e6e6e;
+  --text-link:#4daafc;
+  --text-link-hover:#7cc0ff;
+  --text-required:#f48771;
+
+  --border-default:#2b2b2b;
+  --border-strong:#3c3c3c;
+  --border-field:#3c3c3c;
+  --border-focus:#3794ff;
+  --border-table:#2b2b2b;
+  --ring-focus:0 0 0 3px rgba(55,148,255,.3);
+
+  --tile-bg:#2d2d2d;
+  --tile-fg:#c5c5c5;
+  --tile-active-bg:rgba(55,148,255,.22);
+  --tile-danger-bg:rgba(241,76,76,.16);
+  --switch-track-off:#4a4a4a;
+
+  --shadow-xs:0 1px 2px 0 rgba(0,0,0,.4);
+  --shadow-sm:0 1px 3px 0 rgba(0,0,0,.5);
+  --shadow-lg:0 10px 15px -3px rgba(0,0,0,.6),0 4px 6px -4px rgba(0,0,0,.5);
+  --shadow-dialog:0 24px 48px -10px rgba(0,0,0,.7);
+}
+
+/* Native controls/scrollbars go dark only on surfaces already on the design system. */
+[data-theme="dark"] .vr-sidebar,
+[data-theme="dark"] .vr-topbar,
+[data-theme="dark"] .vr-main:not(.is-legacy) {
+  color-scheme: dark;
+}
