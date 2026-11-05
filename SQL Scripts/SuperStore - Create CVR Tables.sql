@@ -1,16 +1,4 @@
--- ============================================================
--- SuperStore Purchase Volume Rebate - CVR tables
--- Target DB: superstoremain_upgrade (SQL Server 2016)
--- Generated from 'Create Table Scripts.sql' with SuperStore changes:
---   * Suppliers replace the ERP clients: CVR_Contracts / CVR_ContractClients / CVR_SalesSnapshot
---     store the supplier as *_SupCode varchar(4) + *_SupLoc varchar(2) (tbl_Suppliers is keyed on
---     Sup_Code + Sup_Loc), with FK (*_SupCode, *_SupLoc) -> tbl_Suppliers (Sup_Code, Sup_Loc).
---     The API writes *_SupLoc from appsettings "Location".
---   * TRF_ProductGroupID holds the CATEGORY key (tbl_Categories.Cat_Code, same encoding).
---   * TRF_StockItemID holds tbl_StockItm.Stk_StkId.
---   * No FK to Com_Currency (app uses USD/LBP, SuperStore uses $/LL).
---   * OPTIMIZE_FOR_SEQUENTIAL_KEY removed (not supported on SQL 2016).
--- ============================================================
+
 
 SET ANSI_NULLS ON
 GO

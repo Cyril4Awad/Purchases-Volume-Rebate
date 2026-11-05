@@ -1,0 +1,46 @@
+.plan-accordion,
+.plan-accordion .card-body {
+    overflow: visible;
+}
+
+.plan-accordion--nested {
+    border-left: 3px solid #e9ecef;
+    margin-left: 0.5rem;
+    padding-left: 0.75rem;
+    box-shadow: none !important;
+}
+
+.plan-accordion--nested .card-header {
+    background-color: #fafbfc !important;
+}
+/* ---------- slide open / closed (timing from the reference project) ----------
+ * Selectors use ">" on purpose: sections nest (Fees / Targets inside Plan Details), and an
+ * open outer section must not make the inner ones look open (that let a closing section's
+ * content spill over the page: the flicker). */
+.plan-accordion-header { cursor: pointer; user-select: none; }
+.plan-accordion-header:focus-visible { outline: 2px solid var(--color-primary, #0078bb); outline-offset: -2px; }
+.plan-accordion-chevron {
+    display: inline-flex;
+    color: var(--color-primary, #0078bb);
+    transition: transform 300ms var(--ease-standard, cubic-bezier(.4, 0, .2, 1));
+}
+.plan-accordion-chevron.is-open { transform: rotate(180deg); }
+
+.plan-accordion-collapse {
+    display: grid;
+    grid-template-rows: 0fr;
+    opacity: 0;
+    transition:
+        grid-template-rows 300ms var(--ease-standard, cubic-bezier(.4, 0, .2, 1)),
+        opacity 200ms var(--ease-standard, cubic-bezier(.4, 0, .2, 1));
+}
+.plan-accordion-collapse.is-open {
+    grid-template-rows: 1fr;
+    opacity: 1;
+    transition:
+        grid-template-rows 300ms var(--ease-standard, cubic-bezier(.4, 0, .2, 1)),
+        opacity 250ms var(--ease-standard, cubic-bezier(.4, 0, .2, 1)) 60ms;
+}
+.plan-accordion-collapse > .plan-accordion-collapse-inner { min-height: 0; overflow: hidden; }
+/* fully open: nothing clipped (date pickers / popovers inside the section) */
+.plan-accordion-collapse.is-open:not(.is-moving) > .plan-accordion-collapse-inner { overflow: visible; }
