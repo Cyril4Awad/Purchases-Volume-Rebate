@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { appUrl } from '../utils/appUrl';
 
 class PageError extends Component {
 
@@ -22,7 +23,7 @@ class PageError extends Component {
 
                         <div className="col-12">
                             <p>
-                                <a href={process.env.PUBLIC_URL + '/#/login'} className="a-select" style={{ cursor: "pointer", color: "#48a6d7", textDecoration: "underline" }}>
+                                <a href={appUrl('/login')} className="a-select" style={{ cursor: "pointer", color: "#48a6d7", textDecoration: "underline" }}>
                                     Press here
                                 </a> to close
                             </p>

@@ -2,20 +2,14 @@ using FixedAssets_WS.Classes;
 using DataService.DataAccess;
 using DataService.Engine;
 using DataService.Engines.Authentication;
-using DataService.Engines.Main;
-using DataService.Engines.Notification;
 using DataService.Models;
 using DataService.Others;
-using DataService.Storage;
 using Main.Middleware;
 using Main.Security;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http.Timeouts;
 using Microsoft.AspNetCore.Mvc.Authorization;
-using Microsoft.AspNetCore.StaticFiles;
-using Microsoft.Extensions.FileProviders;
-using Microsoft.Extensions.FileProviders.Physical;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
@@ -38,11 +32,10 @@ foreach (var entry in builder.Configuration.GetSection("ConnectionStrings").GetC
         builder.Configuration[entry.Path] = decrypted;
 }
 
-// Optional: increase request timeout for SSE endpoints
+// Request timeouts
 builder.Services.AddRequestTimeouts(o =>
 {
     o.DefaultPolicy = new RequestTimeoutPolicy { Timeout = TimeSpan.FromMinutes(2) };
-    o.AddPolicy("SSE", new RequestTimeoutPolicy { Timeout = TimeSpan.FromHours(12) });
 });
 // CORS
 builder.Services.AddCors(options =>
@@ -79,9 +72,7 @@ builder.Services.AddScoped<UserTenantContextProvider>();
 builder.Services.AddScoped<JWTTokenProvider>();
 
 builder.Services.AddScoped<COM_UserInfo>();
-builder.Services.AddScoped<MainDAL>();
 builder.Services.AddScoped<AutDAL>();
-builder.Services.AddScoped<NotificationDAL>();
 
 //Sales Volume Rebate
 builder.Services.AddScoped<COM_CurrencyDAL>();
@@ -123,29 +114,7 @@ builder.Services.AddScoped<CVRSavedComputationEngine>();
 
 //end of sales volume rebate
 
-builder.Services.AddScoped<MainEngine>();
-builder.Services.AddScoped<NotificationEngine>();
-
-builder.Services.AddSingleton<SSEService>();
-
-
-
-//builder.Services.AddHostedService<NotifierService>();
-
 builder.Services.Configure<Jwt>(builder.Configuration.GetSection("Jwt"));
-
-#region "Static File Serving"
-// Setup for static file serving from "assets" folder at /media/*
-var assetsRoot = Path.Combine(builder.Environment.ContentRootPath, "assets");
-if (!Directory.Exists(assetsRoot))
-    Directory.CreateDirectory(assetsRoot);
-builder.Services.AddSingleton(new StorageOptions
-{
-    AssetsRoot = assetsRoot,
-    RequestPath = "/media",
-});
-builder.Services.AddSingleton<IStorage, LocalDiskStorage>();
-#endregion
 
 var JwtConfig = builder.Configuration.GetSection("Jwt");
 
@@ -201,39 +170,6 @@ builder.Services.AddAuthentication(o =>
 
 var app = builder.Build();
 app.UseCors("AllowSSE");
-#region "Static File Serving"
-
-
-// 1) Restrict served file types (deny by default)
-var provider = new FileExtensionContentTypeProvider();
-// Optional: clear and allow-list
-//provider.Mappings.Clear();
-//provider.Mappings[".png"] = "image/png";
-//provider.Mappings[".jpg"] = "image/jpeg";
-//provider.Mappings[".jpeg"] = "image/jpeg";
-//provider.Mappings[".webp"] = "image/webp";
-//provider.Mappings[".gif"] = "image/gif";
-//provider.Mappings[".pdf"] = "application/pdf";
-
-app.UseStaticFiles(new StaticFileOptions
-{
-    FileProvider = new PhysicalFileProvider(assetsRoot, ExclusionFilters.Sensitive), // hides .git, .env, etc.
-    RequestPath = "/media",
-    ContentTypeProvider = provider,                      // block unknown types
-    ServeUnknownFileTypes = false,                       // extra safety
-    OnPrepareResponse = ctx =>
-    {
-        // 2) Caching policy (tune per need)
-        // Dev: no cache
-        // ctx.Context.Response.Headers["Cache-Control"] = "no-cache, no-store";
-        // Prod example: long cache
-        ctx.Context.Response.Headers["Cache-Control"] = "public, max-age=31536000, immutable";
-        // StaticFileMiddleware sets Last-Modified; ETag isn�t automatic.
-    }
-});
-
-
-#endregion
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

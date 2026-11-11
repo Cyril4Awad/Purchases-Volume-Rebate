@@ -8,68 +8,8 @@ using System.Threading.Tasks;
 
 namespace DataService.Models.DTOs
 {
-    public class NotificationDto
-    {
-        // Original SSE notification properties
-        public int sse_notif_id { get; set; }
-        public string notification_type { get; set; }
-        = string.Empty;
 
-        public string notification_message { get; set; } = string.Empty;
 
-        public string notification_recipient { get; set; } = string.Empty;
-
-    }
-    public class TemplateDefinitionRow : ICloneable
-    {
-        public int TemplateId { get; set; }
-        public string Code { get; set; }
-        public string Name { get; set; }
-        public int Version { get; set; }
-        public TemplateRoot? Json { get; set; }
-        public DateTime CreatedAt { get; set; }
-        public DateTime UpdatedAt { get; set; }
-        public object Clone()
-        {
-            return this.MemberwiseClone();
-        }
-    }
-
-    public class JobDefinition
-    {
-
-        public Guid? JobId { get; set; }
-        public string? Title { get; set; }
-        public string? Department { get; set; }
-        public string? Location { get; set; }
-        public string? HiringManager { get; set; }
-        public System.DateTime? OpenDate { get; set; }
-        public string? Notes { get; set; }
-        public string? CVPath { get; set; }
-        public int TemplateId { get; set; }
-    }
-
-    public class CandidateDefinition
-    {
-        public Guid CandidateId { get; set; }
-        public Guid JobId { get; set; }
-
-        public string? FullName { get; set; }
-        public string? Phone { get; set; }
-        public string? Email { get; set; }
-        public string? Source { get; set; }
-
-        public string? CvPath { get; set; }
-        public string? ConvertedPath { get; set; }
-
-        public string? Tag0Status { get; set; }
-        public string? Tag0Remarks { get; set; }
-        public DateTime? Tag0UpdatedAt { get; set; }   // nullable since datetime2 can be NULL
-
-        public TemplateRoot? Json { get; set; }  // nvarchar(max)
-        public string? ExcludedOnPhase { get; set; }
-        public string? NextPhase { get; set; }
-    }
 
     //Sales Volume Rebate 
     public class CVR_BreakdownRowDto
@@ -283,10 +223,6 @@ namespace DataService.Models.DTOs
         public bool Override { get; set; }
     }
 
-    public class CVR_ContractReferenceExistsDto
-    {
-        public bool Exists { get; set; }
-    }
 
     /// <summary>One stock item or product group linked to a target (<c>CVR_TargetReferences</c>).</summary>
     public class CVR_TargetReferenceDto
@@ -407,18 +343,7 @@ namespace DataService.Models.DTOs
         public bool CashRegValid { get; set; }
     }
 
-    public class PosoAppCompDto
-    {
-        public string Comp { get; set; } = string.Empty;
-        public string Year { get; set; } = string.Empty;
-        public string Curr1 { get; set; } = string.Empty;
-        public string Curr2 { get; set; } = string.Empty;
-    }
 
-    public class CashRegComputerNameDto
-    {
-        public string ComputerName { get; set; } = string.Empty;
-    }
 
     public class ContractMainClientDto
     {

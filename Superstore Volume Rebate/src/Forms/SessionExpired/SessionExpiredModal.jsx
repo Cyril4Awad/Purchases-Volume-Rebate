@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { ModalComp } from "../../ReusableComponents";
+import { appUrl } from "../../utils/appUrl";
 import '../../Containers/loadingContainer.css';
 
 export default function SessionExpiredModal() {
@@ -11,7 +12,7 @@ export default function SessionExpiredModal() {
             setTimeout(() => {
                 localStorage.removeItem('token');
                 localStorage.removeItem('userData');
-                window.location.href = window.location.origin + '/#/volumerebate/login';
+                window.location.href = appUrl('/login');
             }, 3000);
         };
 

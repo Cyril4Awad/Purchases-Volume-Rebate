@@ -143,7 +143,7 @@ fetch(`${process.env.PUBLIC_URL}/config.json`)
     const { ToasterProvider } = require('./ui/toast/Toaster');
 
     ReactDOM.render(
-      <HashRouter basename="/volumerebate">
+      <HashRouter>
         <ErrorContextWrapper>
           <SettingsContextWrapper>
             <AuthContextWrapper>
